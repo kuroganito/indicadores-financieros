@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://root:indicadores@ds025603.mlab.com:25603/heroku_krf90n0c');
+mongoose.connect(process.env.MONGODB_URI);
 
 var Indicator = mongoose.model('Indicator', {
     name: String,

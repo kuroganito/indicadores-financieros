@@ -9,10 +9,15 @@ app.get('/api', function(req, res) {
     if (req.query.type != null && req.query.year != null && req.query.month != null && req.query.day != null && req.query.type > 0 && req.query.type < 16) {
         var indicatorName = firtsLoad.idicators[req.query.type - 1].name;
         var indicatorDate = new Date(req.query.year, req.query.month - 1, req.query.day)
+        console.log({
+            name: indicatorName,
+            date: indicatorDate
+        })
         Indicator.find({
             name: indicatorName,
             date: indicatorDate
         }).then(function(data) {
+            console.log(data)
             res.json(data)
         })
     } else {
@@ -23,7 +28,7 @@ app.get('/api', function(req, res) {
 app.listen(process.env.PORT || 5000, function() {
     firtsLoad.checkIfEmpty();
     schedule.scheduleJob('0 6 * * *', function() {
-        console.log("Nuevos datos",new Date())
+        console.log("Nuevos datos", new Date())
         firtsLoad.queryAndSaveIndicators(true)
     });
     console.log('Example app listening on port 3000!');
