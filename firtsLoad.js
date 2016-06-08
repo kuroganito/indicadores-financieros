@@ -67,7 +67,6 @@ var Query = {
         var fDay = today ? aDay : '01';
         var fMonth = today ? aMonth : '01';
         var fYear = today ? aYear : '1990';
-
         listIndicator.forEach(function(e) {
             search.getIndicator(String(e.n), fDay, fMonth, fYear, aDay, aMonth, aYear).then(function(data) {
                 data.forEach(function(d) {
@@ -80,8 +79,6 @@ var Query = {
             })
         })
     }
-
-
 }
 
 module.exports = Query
