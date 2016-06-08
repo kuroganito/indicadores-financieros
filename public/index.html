@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Indicadores finacieros</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+
+<body class="container">
+    <h1>Indicadores financieros</h1>
+    <p>
+        Servicio que provee los indicadores financieros en base a una fecha
+    </p>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Uso</h3>
+            <p>
+                El servicio responde en la url <i>api/</i> y recibe los siguientes parametros:
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Parametro</th>
+                        <th>Rango</th>
+                        <th>Requerido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>type</td>
+                        <td>1 - 15</td>
+                        <td>Si</td>
+                    </tr>
+                    <tr>
+                        <td>year</td>
+                        <td>1990 - 2016</td>
+                        <td>Si</td>
+                    </tr>
+                    <tr>
+                        <td>month</td>
+                        <td>1 - 12</td>
+                        <td>Si</td>
+                    </tr>
+                    <tr>
+                        <td>day</td>
+                        <td>1 - 31</td>
+                        <td>Si</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <h3>Indicadores disponibles</h3>
+            <ol>
+                <li>UDIS</li>
+                <li>DOLAR</li>
+                <li>CCP</li>
+                <li>CCP-UDIS</li>
+                <li>CPP</li>
+                <li>CCP-DOLARES</li>
+                <li>TIIE 28 DIAS</li>
+                <li>TIIE 91 DIAS</li>
+                <li>TIIC DEPOSITOS 60 DIAS</li>
+                <li>TIIC DEPOSITOS 90 DIAS</li>
+                <li>TIIC DEPOSITOS 180 DIAS</li>
+                <li>TIIC PAGARES 28 DIAS</li>
+                <li>TIIC PAGARES 91 DIAS</li>
+                <li>TIIC PAGARES 182 DIAS</li>
+                <li>TIIE 182 DIAS</li>
+            </ol>
+        </div>
+    </div>
+    <h3>Ejemplo</h3>
+    <p>
+      Para obtener el valor de <strong>TIIE 28 DIAS</strong> el 2 de julio del 2015 la peticion se construye de la siguiente forma:
+    </p>
+    <p>
+      <a href="api/?type=7&year=2015&month=6&day=1">api/?type=7&year=2015&month=6&day=1</a>
+    </p>
+    <p>
+      Y la respuesta seria.
+    </p>
+    <p>
+        <code>[{"_id":"5758424236e199570fe6033d","name":"TIIE 28 DIAS","date":"2015-06-01T05:00:00.000Z","value":3.3,"__v":0}]</code>
+    </p>
+</body>
+
+</html>
