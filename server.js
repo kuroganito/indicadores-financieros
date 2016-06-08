@@ -17,6 +17,7 @@ app.get('/api', function(req, res) {
             name: indicatorName,
             date: indicatorDate
         }).then(function(data) {
+            console.log("Resultado")
             console.log(data)
             res.json(data)
         })
@@ -25,11 +26,11 @@ app.get('/api', function(req, res) {
     }
 });
 
-app.listen(process.env.PORT || 5000, function() {
+app.listen(process.env.PORT || 3000, function() {
     firtsLoad.checkIfEmpty();
     schedule.scheduleJob('0 6 * * *', function() {
         console.log("Nuevos datos", new Date())
         firtsLoad.queryAndSaveIndicators(true)
     });
-    console.log('Example app listening on port 3000!');
+    console.log('Corriendo en el puerto: ' + process.env.PORT || 3000);
 });
