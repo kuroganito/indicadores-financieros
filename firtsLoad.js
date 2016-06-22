@@ -68,9 +68,7 @@ var Query = {
         var aYear = String(aDate.getFullYear())
         var fDay, fMonth, fYear;
 
-        Indicator.find({}).sort({
-            "date": -1
-        }).limit(1).then(function(data) {
+        Indicator.find({}).sort({"date": -1}).limit(1).then(function(data) {
             if (today) {
                 var fDate = new Date(data[0].date)
                 fDay = fDate.getDate() < 10 ? '0' + fDate.getDate() : fDate.getDate();
@@ -81,8 +79,6 @@ var Query = {
                 fMonth = '01';
                 fYear = '1990';
             }
-            console.log(fDay,fMonth,fYear)
-            console.log(aDay,aMonth,aYear)
             if ((today && !(aDay == fDay && aMonth == fMonth && aYear == fYear)) || !today) {
                 console.log("Haciendo la busqueda desde el dia: ", fDay,fMonth,fYear)
                 listIndicator.forEach(function(e) {
