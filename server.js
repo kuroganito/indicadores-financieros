@@ -20,8 +20,7 @@ app.get('/api', function(req, res) {
     }
 });
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen((process.env.PORT || 3000), function() {
     firtsLoad.checkIfEmpty();
-    firtsLoad.queryAndSaveIndicators(true)
-    console.log('Corriendo en el puerto: ' + process.env.PORT || 3000);
+    console.log('Corriendo en el puerto: ' + (process.env.PORT || 3000));
 });

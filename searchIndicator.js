@@ -3,6 +3,7 @@ var htmlToJson = require('html-to-json');
 var Search = {
     getIndicator: function(indicator, iDay, iMonth, iYear, fDay, fMonth, fYear) {
         return new Promise(function(resolve, reject) {
+          console.log("http://dof.gob.mx/indicadores_detalle.php?cod_tipo_indicador=" + indicator + "&dfecha=" + iDay + "%2F" + iMonth + "%2F" + iYear + "&hfecha=" + fDay + "%2F" + fMonth + "%2F" + fYear)
             htmlToJson.request("http://dof.gob.mx/indicadores_detalle.php?cod_tipo_indicador=" + indicator + "&dfecha=" + iDay + "%2F" + iMonth + "%2F" + iYear + "&hfecha=" + fDay + "%2F" + fMonth + "%2F" + fYear, {
                     'response': ['td.txt', function($text) {
                         return $text.text();
@@ -26,6 +27,7 @@ var Search = {
                             value: result[i + 1]
                         });
                     }
+                    console.log(finalResult.length)
                     resolve(finalResult)
                 });
         });

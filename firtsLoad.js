@@ -56,6 +56,8 @@ var Query = {
         Indicator.find({}).then(function(data) {
             if (data.length == 0) {
                 Query.queryAndSaveIndicators()
+            }else{
+              Query.queryAndSaveIndicators(true)
             }
         })
     },
@@ -69,17 +71,17 @@ var Query = {
         Indicator.find({}).sort({
             "date": -1
         }).limit(1).then(function(data) {
-            var fDate = new Date(data[0].date)
             if (today) {
-                var fDay = fDate.getDate() < 10 ? '0' + fDate.getDate() : fDate.getDate();
-                var fMonth = (fDate.getMonth() + 1) < 10 ? '0' + (fDate.getMonth() + 1) : fDate.getMonth() + 1;
-                var fYear = String(fDate.getFullYear())
+                var fDate = new Date(data[0].date)
+                fDay = fDate.getDate() < 10 ? '0' + fDate.getDate() : fDate.getDate();
+                fMonth = (fDate.getMonth() + 1) < 10 ? '0' + (fDate.getMonth() + 1) : fDate.getMonth() + 1;
+                fYear = String(fDate.getFullYear())
             } else {
                 fDay = '01';
                 fMonth = '01';
                 fYear = '1990';
             }
-            if (aDay != fDay && aMonth != fMonth && fYear != fYear) {
+            if ((today && aDay != fDay && aMonth != fMonth && fYear != fYear) || !today) {
                 console.log("Haciendo la busqueda desde el dia: ", fDay,fMonth,fYear)
                 listIndicator.forEach(function(e) {
                     search.getIndicator(String(e.n), fDay, fMonth, fYear, aDay, aMonth, aYear).then(function(data) {
@@ -93,7 +95,6 @@ var Query = {
                     })
                 })
             }
-
         })
     }
 }
