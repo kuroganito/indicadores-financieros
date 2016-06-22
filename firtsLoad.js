@@ -81,6 +81,8 @@ var Query = {
                 fMonth = '01';
                 fYear = '1990';
             }
+            console.log(fDay,fMonth,fYear)
+            console.log(aDay,aMonth,aYear)
             if ((today && (aDay != fDay && aMonth != fMonth && aYear != fYear)) || !today) {
                 console.log("Haciendo la busqueda desde el dia: ", fDay,fMonth,fYear)
                 listIndicator.forEach(function(e) {
