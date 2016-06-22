@@ -22,9 +22,6 @@ app.get('/api', function(req, res) {
 
 app.listen(process.env.PORT || 3000, function() {
     firtsLoad.checkIfEmpty();
-    schedule.scheduleJob('0 6 * * *', function() {
-        console.log("Nuevos datos", new Date())
-        firtsLoad.queryAndSaveIndicators(true)
-    });
+    firtsLoad.queryAndSaveIndicators(true)
     console.log('Corriendo en el puerto: ' + process.env.PORT || 3000);
 });

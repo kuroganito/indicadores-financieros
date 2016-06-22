@@ -64,19 +64,36 @@ var Query = {
         var aDay = aDate.getDate() < 10 ? '0' + aDate.getDate() : aDate.getDate();
         var aMonth = (aDate.getMonth() + 1) < 10 ? '0' + (aDate.getMonth() + 1) : aDate.getMonth() + 1;
         var aYear = String(aDate.getFullYear())
-        var fDay = today ? aDay : '01';
-        var fMonth = today ? aMonth : '01';
-        var fYear = today ? aYear : '1990';
-        listIndicator.forEach(function(e) {
-            search.getIndicator(String(e.n), fDay, fMonth, fYear, aDay, aMonth, aYear).then(function(data) {
-                data.forEach(function(d) {
-                    new Indicator({
-                        name: e.name,
-                        date: new Date(d.date),
-                        value: d.value
-                    }).save();
+        var fDay, fMonth, fYear;
+
+        Indicator.find({}).sort({
+            "date": -1
+        }).limit(1).then(function(data) {
+            var fDate = new Date(data[0].date)
+            if (today) {
+                var fDay = fDate.getDate() < 10 ? '0' + fDate.getDate() : fDate.getDate();
+                var fMonth = (fDate.getMonth() + 1) < 10 ? '0' + (fDate.getMonth() + 1) : fDate.getMonth() + 1;
+                var fYear = String(fDate.getFullYear())
+            } else {
+                fDay = '01';
+                fMonth = '01';
+                fYear = '1990';
+            }
+            if (aDay != fDay && aMonth != fMonth && fYear != fYear) {
+                console.log("Haciendo la busqueda desde el dia: ", fDay,fMonth,fYear)
+                listIndicator.forEach(function(e) {
+                    search.getIndicator(String(e.n), fDay, fMonth, fYear, aDay, aMonth, aYear).then(function(data) {
+                        data.forEach(function(d) {
+                            new Indicator({
+                                name: e.name,
+                                date: new Date(d.date),
+                                value: d.value
+                            }).save();
+                        })
+                    })
                 })
-            })
+            }
+
         })
     }
 }

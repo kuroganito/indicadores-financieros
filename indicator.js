@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_UR);
 
 var Indicator = mongoose.model('Indicator', {
     name: String,
