@@ -83,7 +83,7 @@ var Query = {
             }
             console.log(fDay,fMonth,fYear)
             console.log(aDay,aMonth,aYear)
-            if ((today && (aDay != fDay && aMonth != fMonth && aYear != fYear)) || !today) {
+            if ((today && !(aDay == fDay && aMonth == fMonth && aYear == fYear)) || !today) {
                 console.log("Haciendo la busqueda desde el dia: ", fDay,fMonth,fYear)
                 listIndicator.forEach(function(e) {
                     search.getIndicator(String(e.n), fDay, fMonth, fYear, aDay, aMonth, aYear).then(function(data) {
